@@ -4,7 +4,7 @@ services:
 
 
 before_install:
-  - docker build -t stevechung/docker-react -f Dockerfile.dev
+  - docker build -t stevechung/docker-react -f Dockerfile.dev .
 
 script:
   # -- --coverage to make sure to exit out of the test after it done.
