@@ -1,0 +1,24 @@
+version: '3'
+services:
+  web:
+    build: 
+      # use the project in the current directory
+      context: .
+      # use the specified docker file
+      dockerfile: Dockerfile.dev
+    ports:
+      - "3010:3000"
+    volumes:
+      - /app/node_modules
+      - /c/Users/heema/react-app/frontend:/app
+  
+  test:
+    build: 
+      # use the project in the current directory
+      context: .
+      # use the specified docker file
+      dockerfile: Dockerfile.dev
+    volumes:
+      - /app/node_modules
+      - /c/Users/heema/react-app/frontend:/app
+    command: ["npm", "run", "test"]
