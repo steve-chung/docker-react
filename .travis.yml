@@ -9,3 +9,18 @@ before_install:
 script:
   # -- --coverage to make sure to exit out of the test after it done.
   - docker run stevechung/docker-react npm run test -- --coverage 
+
+# configuring to deploy to aws eb.
+deploy:
+  provider: elasticbeanstalk
+  region: "us-east-1"
+  app: "docker-react" # name of the app 
+  env: "DockerReact-env"
+  bucket_name: "elasticbeanstalk-us-east-1-908788730259" #s3 bucket name that holds the project.
+  bucket_path: "docker-react" # the path that the project will be saved at.
+  on:
+    branch: master # deploy on master branch update
+  # add key in the travis ic configuration ad tell aws the access key id and secret
+  access_key_id: $AWS_ACCESS_KEY
+  secret_access_key:
+    secure: "$AWS_SECRET_KEY"
